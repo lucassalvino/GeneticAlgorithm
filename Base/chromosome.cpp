@@ -1,5 +1,5 @@
 #include "chromosome.h"
-/*template<class TYPE>
+template<class TYPE>
 vector<TYPE> Chromosome<TYPE>::GetGene()
 {
     return this->gene;
@@ -11,4 +11,4 @@ TYPE Chromosome<TYPE>::GetGeneAt(int index)
         throw "[index] is invald value";
     return this->gene[index];
 }
-*/
+
