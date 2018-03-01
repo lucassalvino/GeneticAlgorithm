@@ -28,12 +28,15 @@ public:
         ative = Ativo;
     }
 
-    ~Chromosome();
+    ~Chromosome()
+    {
+        Clear();
+    }
     vector<TYPE> GetGene();
     TYPE GetGeneAt(int index);
     void SetGeneAt(int index, TYPE value);
     void SetGene(vector<TYPE>);
-    void GenerateRandom(GenerateRandomGene * generateGene,int numberOfElements);
+    void GenerateRandom(GenerateRandomGene<TYPE> * generateGene,int numberOfElements);
     Chromosome<TYPE> GetSubChromosome(int begin, int end);
     int GetNumberOfElements();
     void SetNumberOfElements(int value);

@@ -5,6 +5,5 @@ template <class TYPE>
 class GenerateRandomGene{
 public:
     virtual TYPE GetRandomGene(){throw std::string("Not imlements GetRandomGene");}
-private:
 };
 #endif // GENERATERANDOMGENE_H
