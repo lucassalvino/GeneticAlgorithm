@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Base/import/chromosome.hpp"
+#include "Base/chromosome.h"
 using namespace std;
 
 int main()
