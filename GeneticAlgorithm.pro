@@ -8,7 +8,8 @@ SOURCES += main.cpp \
     Base/templateclassid.cpp
 
 HEADERS += \
-    Base/import/chromosome.h \
     Base/import/generaterandomgene.h \
     Base/chromosome.h \
-    Base/templateclassid.h
+    Base/templateclassid.h \
+    Base/import/chromosome.hpp \
+    Base/definesmacros.h

@@ -3,29 +3,31 @@
 #include <iostream>
 #include <vector>
 #include <stdio.h>
-using namespace std;
 #include "templateclassid.h"
 #include "import/generaterandomgene.h"
-#define TEMPLATE template<class TYPE>
+#include "definesmacros.h"
 
 TEMPLATE
 class Chromosome : public TemplateClassId
 {
 private:
-    vector<TYPE> gene;
+    std::vector<TYPE> gene;
     double evaluation;
     bool ative;
 public:
     Chromosome():TemplateClassId(){
         ative = false;
+        evaluation = 0;
     }
 
     Chromosome(int Id):TemplateClassId(Id){
         ative = true;
+        evaluation = 0;
     }
 
     Chromosome(int Id, bool Ativo):TemplateClassId(Id){
         ative = Ativo;
+        evaluation = 0;
     }
 
     ~Chromosome()
@@ -39,13 +41,12 @@ public:
     void GenerateRandom(GenerateRandomGene<TYPE> * generateGene,int numberOfElements);
     Chromosome<TYPE> GetSubChromosome(int begin, int end);
     int GetNumberOfElements();
-    void SetNumberOfElements(int value);
     void Clear();
     void SetEvaluation(double value);
     double GetEvaluation();
     void Swap(int i, int j);
     bool GetAtive();
-    bool SetAtive(bool value);
+    void SetAtive(bool value);
 };
 
 #endif // CHROMOSOME_H
