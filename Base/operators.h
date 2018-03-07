@@ -57,6 +57,7 @@ public:
     }
     static Chromosome<T> Mutation(Chromosome<T> chromos, int SwapNumber = 1)
     {
+        int n = chromos.GetNumberOfElements();
         for(int i=0;i<SwapNumber;i++){
             chromos.Swap(rand()%n,rand()%n);
         }

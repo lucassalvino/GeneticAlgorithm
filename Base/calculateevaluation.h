@@ -7,13 +7,14 @@ class CalculateEvaluation{
 public:
     virtual double calculateEvaluation(Chromosome<T> value,int init, int final)
     {
-        return value = init = final = 0;
+        value = init = final = 0;
+        return 0;
     }
     virtual double calculateEvaluation(Chromosome<T> value)
     {
         return value = 0;
     }
-    virtual double getEvaluation(Chromosome<T>* value)
+    virtual double GetEvaluation(Chromosome<T>* value)
     {
         return value = 0;
     }

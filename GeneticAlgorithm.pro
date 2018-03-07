@@ -14,4 +14,6 @@ HEADERS += \
     Base/environment.h \
     Base/operators.h \
     Base/utility.h \
-    Base/calculateevaluation.h
+    Base/calculateevaluation.h \
+    Base/population.h \
+    Base/generaterandomchromosome.h
