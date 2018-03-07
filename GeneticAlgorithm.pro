@@ -12,4 +12,6 @@ HEADERS += \
     Base/definesmacros.h \
     Base/generaterandomgene.h \
     Base/environment.h \
-    Base/operators.h
+    Base/operators.h \
+    Base/utility.h \
+    Base/calculateevaluation.h
