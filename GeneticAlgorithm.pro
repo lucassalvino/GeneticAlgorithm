@@ -11,4 +11,5 @@ HEADERS += \
     Base/templateclassid.h \
     Base/definesmacros.h \
     Base/generaterandomgene.h \
-    Base/environment.h
+    Base/environment.h \
+    Base/operators.h
