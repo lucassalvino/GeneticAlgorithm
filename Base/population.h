@@ -102,6 +102,36 @@ public:
         }
         return *ret;
     }
+    double GetEvaluationSum()
+    {
+        return evaluationSum;
+    }
+    void CalculateNextPopulation()
+    {
+        swapChromosomes.clear();
+        UpdateEvaluationSum();
+        if(evaluationSum == 0){
+            printf("\n[PERIGO] A populacao [%d] esta com nenhum individuo valido, todos com aptidao = 0\n\tA roleta nao irá selecionar nenhum individuo\n\n",this->idGeneration);
+        }
+        for(typename list<Chromosome<T> >::iterator it = defaultChromosomes.begin(); it != defaultChromosomes.end(); it++){
+            Chromosome<T> role = Roulette();
+            bool add = false;
+            if(Utility::GetChance(instanceEnvironment->GetCrossOverRate())){
+                Chromosome<T> son = instanceOfOperators->CrossOverTwoPoint(*it,role);
+                son.SetId(this->idGeneration++);
+                swapChromosomes.push_back(son);
+                add = true;
+            }
+            if(Utility::GetChance(instanceEnvironment->GetChangeRate())){
+                role = instanceOfOperators->Mutation(role);
+                new_chromosomes.push_back(role);
+                add = true;
+            }
+            if(!add){
+                swapChromosomes.push_back(role);
+            }
+        }
+    }
 };
 
 #endif // POPULATION_H
