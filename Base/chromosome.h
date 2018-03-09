@@ -3,29 +3,29 @@
 #include <iostream>
 #include <vector>
 #include <stdio.h>
-#include "templateclassid.h"
+#include "include/baseclassid.hpp"
 #include "generaterandomgene.h"
 #include "definesmacros.h"
 
 TEMPLATE
-class Chromosome : public TemplateClassId
+class Chromosome : public BaseClassId
 {
 private:
     std::vector<T> gene;
     double evaluation;
     bool ative;
 public:
-    Chromosome():TemplateClassId(){
+    Chromosome():BaseClassId(){
         ative = false;
         evaluation = 0;
     }
 
-    Chromosome(int Id):TemplateClassId(Id){
+    Chromosome(int Id):BaseClassId(Id){
         ative = true;
         evaluation = 0;
     }
 
-    Chromosome(int Id, bool Ativo):TemplateClassId(Id){
+    Chromosome(int Id, bool Ativo):BaseClassId(Id){
         ative = Ativo;
         evaluation = 0;
     }

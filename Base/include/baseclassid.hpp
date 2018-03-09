@@ -1,10 +1,10 @@
-#ifndef TEMPLATECLASSID_H
-#define TEMPLATECLASSID_H
-class TemplateClassId
+#ifndef BASECLASSID_HPP
+#define BASECLASSID_HPP
+class BaseClassId
 {
 public:
-    TemplateClassId();
-    TemplateClassId(int Id);
+    BaseClassId();
+    BaseClassId(int Id);
     int GetId();
     void SetId(int Id);
 protected:
@@ -14,4 +14,4 @@ private:
     bool AlreadySetId;
     void updateId(int id);
 };
-#endif // TEMPLATECLASSID_H
+#endif // BASECLASSID_HPP

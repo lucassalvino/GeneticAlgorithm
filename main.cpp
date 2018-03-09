@@ -1,10 +1,22 @@
 #include <iostream>
-#include "Base/population.h"
+#include "Base/include/population.hpp"
 using namespace std;
 
 int main()
 {
-    Population<int> population();
-    cout << "Hello World!" << endl;
+    try
+    {
+        Population<int> population;
+        population.InitilizePopulation(10,3);
+        cout << "Hello World!" << endl;
+    }
+    catch(const char * erro)
+    {
+        printf ("[ERROR] Fail message: [%s]\n\n", erro);
+    }
+    catch(...)
+    {
+        printf("[ERROR] Unexpected error");
+    }
     return 0;
 }

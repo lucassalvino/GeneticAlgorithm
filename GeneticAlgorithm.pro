@@ -4,11 +4,12 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += main.cpp \
-    Base/templateclassid.cpp
+    Base/BaseClassId.cpp \
+    Base/population.cpp \
+    Base/operators.cpp
 
 HEADERS += \
     Base/chromosome.h \
-    Base/templateclassid.h \
     Base/definesmacros.h \
     Base/generaterandomgene.h \
     Base/environment.h \
@@ -16,4 +17,7 @@ HEADERS += \
     Base/utility.h \
     Base/calculateevaluation.h \
     Base/population.h \
-    Base/generaterandomchromosome.h
+    Base/generaterandomchromosome.h \
+    Base/include/baseclassid.hpp \
+    Base/include/population.hpp \
+    Base/include/operators.hpp

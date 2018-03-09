@@ -1,25 +1,25 @@
-#include "templateclassid.h"
-TemplateClassId::TemplateClassId()
+#include "include/baseclassid.hpp"
+BaseClassId::BaseClassId()
 {
     ID = -1;
     AlreadySetId = 0;
 }
 
-TemplateClassId::TemplateClassId(int Id){
+BaseClassId::BaseClassId(int Id){
     updateId(Id);
 }
 
-int TemplateClassId::GetId(){
+int BaseClassId::GetId(){
     return ID;
 }
 
-void TemplateClassId::SetId(int Id){
+void BaseClassId::SetId(int Id){
     if(AlreadySetId)
         throw "ID already set";
     updateId(Id);
 }
 
-void TemplateClassId::updateId(int Id){
+void BaseClassId::updateId(int Id){
     if(validateId(Id)){
         this->ID = Id;
         AlreadySetId = true;
@@ -28,6 +28,6 @@ void TemplateClassId::updateId(int Id){
     }
 }
 
-bool TemplateClassId::validateId(int Id){
+bool BaseClassId::validateId(int Id){
     return (Id>=0);
 }

@@ -22,7 +22,7 @@ public:
 
     void SetChangeRate(double value)
     {
-        if(value > 1.0) printf("[WARNING] The change rate is bigger of 100%.");
+        if(value > 1.0) printf("[WARNING] The change rate is bigger of 100%c.",'%');
         rateChange = value;
         rateCrossOver = 1 - rateChange;
     }
@@ -36,7 +36,7 @@ public:
 
     void SetCrossOverRate(double value)
     {
-        if(value > 1.0) printf("[WARNING] The CrossOver rate is bigger of 100%.");
+        if(value > 1.0) printf("[WARNING] The CrossOver rate is bigger of 100%c.",'%');
         rateCrossOver = value;
         rateChange = 1 - rateCrossOver;
     }

@@ -7,7 +7,8 @@ class GenerateRandomChromosome{
 public:
     virtual Chromosome<T> GenerateChromosome(int numGenes, int ID)
     {
-        numGenes = ID = 0;
+        ID = 0;
+        numGenes = 0;
         throw "GenerateChromosome not implements";
     }
 };
