@@ -2,7 +2,7 @@
 #define POPULATION_H
 #include "definesmacros.h"
 #include "environment.h"
-#include "chromosome.h"
+#include "include/chromosome.hpp"
 #include "generaterandomgene.h"
 #include "generaterandomchromosome.h"
 #include "include/operators.hpp"
@@ -40,5 +40,12 @@ public:
     Chromosome<T> GetBestChromosome();
     double GetEvaluationSum();
     void CalculateNextPopulation();
+    Environment* GetEnvironment();
+    void SetEnvironment(Environment* value);
+    int GetNumChromosomes();
+    Chromosome<T> getChromosomeAt(int index);
+    int GetNumGene();
+    int GetSizePopulation();
+    double GetDefaultDeviation();
 };
 #endif // POPULATION_H

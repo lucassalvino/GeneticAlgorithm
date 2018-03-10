@@ -115,3 +115,51 @@ void Population<T>::CalculateNextPopulation()
         }
     }
 }
+
+TEMPLATE
+Environment *Population<T>::GetEnvironment()
+{
+    return instanceEnvironment;
+}
+
+TEMPLATE
+void Population<T>::SetEnvironment(Environment* value)
+{
+    if (value == 0)
+        throw "The value of the Environment instance is null";
+    instanceEnvironment = value;
+}
+
+TEMPLATE
+int Population<T>::GetNumChromosomes()
+{
+    return (int)defaultChromosomes.size();
+}
+
+TEMPLATE
+Chromosome<T> Population<T>::getChromosomeAt(int index)
+{
+    typename std::list<Chromosome<T> >::iterator it = defaultChromosomes.begin();
+    if((int)defaultChromosomes.size() > index && index >= 0)
+        for(;index!=0;index--)
+            it++;
+    return *it;
+}
+
+TEMPLATE
+int Population<T>::GetNumGene()
+{
+    return numOfGenes;
+}
+
+TEMPLATE
+int Population<T>::GetSizePopulation()
+{
+    return populationSize;
+}
+
+TEMPLATE
+double Population<T>::GetDefaultDeviation()
+{
+     return deviationDefault;
+}

@@ -6,7 +6,8 @@ CONFIG -= qt
 SOURCES += main.cpp \
     Base/BaseClassId.cpp \
     Base/population.cpp \
-    Base/operators.cpp
+    Base/operators.cpp \
+    Base/chromosome.cpp
 
 HEADERS += \
     Base/chromosome.h \
@@ -20,4 +21,5 @@ HEADERS += \
     Base/generaterandomchromosome.h \
     Base/include/baseclassid.hpp \
     Base/include/population.hpp \
-    Base/include/operators.hpp
+    Base/include/operators.hpp \
+    Base/include/chromosome.hpp
