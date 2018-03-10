@@ -1,0 +1,4 @@
+#ifndef CHROMOSOME_HPP
+#define CHROMOSOME_HPP
+
+#endif // CHROMOSOME_HPP
