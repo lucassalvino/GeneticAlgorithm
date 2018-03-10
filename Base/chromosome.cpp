@@ -51,6 +51,8 @@ void Chromosome<T>::SetGene(std::vector<T> value)
 {
     if((int)value.size() <= 0) throw "The size of gene must be greater than zero";
     this->gene = value;
+    ative = true;
+    evaluation = 0;
 }
 
 TEMPLATE

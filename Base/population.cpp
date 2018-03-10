@@ -49,11 +49,21 @@ void Population<T>::Clear(){
 TEMPLATE
 void Population<T>::InitilizePopulation(int sizePopulation, int numGenes)
 {
-    if(instanceOfGenerateRandomChromosome == 0)
-        throw "Not Exists instance for GenerateRandomChromosome";
-    for(int i = 0; i < sizePopulation; i++){
-        defaultChromosomes.push_back(instanceOfGenerateRandomChromosome->GenerateChromosome(numGenes,i));
-    }
+    if(instanceOfGenerateRandomChromosome == 0 && instanceOfGenerateRandomGene == 0)
+        throw "Not Exists instance for GenerateRandomChromosome or instanceOfGenerateRandomGene";
+    if(instanceOfGenerateRandomChromosome)
+        for(int i = 0; i < sizePopulation; i++)
+            defaultChromosomes.push_back(instanceOfGenerateRandomChromosome->GenerateChromosome(numGenes,i));
+    else
+        for(int i = 0; i < sizePopulation; i++)
+        {
+            Chromosome<T> valueAdd;
+            std::vector<T> genes;
+            for(int j = 0; j < numOfGenes; j++)
+                genes.push_back(instanceOfGenerateRandomGene->GetRandomGene());
+            valueAdd.SetGene(genes);
+            defaultChromosomes.push_back(valueAdd);
+        }
 }
 
 TEMPLATE
@@ -150,6 +160,14 @@ TEMPLATE
 int Population<T>::GetNumGene()
 {
     return numOfGenes;
+}
+
+TEMPLATE
+void Population<T>::SetNumGene(int value)
+{
+    if(value == 0)
+        throw "The value of NumOfGene is zero";
+    this->numOfGenes = value;
 }
 
 TEMPLATE

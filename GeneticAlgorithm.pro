@@ -7,7 +7,9 @@ SOURCES += main.cpp \
     Base/BaseClassId.cpp \
     Base/population.cpp \
     Base/operators.cpp \
-    Base/chromosome.cpp
+    Base/chromosome.cpp \
+    Base/managergeneticalgorithm.cpp \
+    Base/generation.cpp
 
 HEADERS += \
     Base/chromosome.h \
@@ -22,4 +24,8 @@ HEADERS += \
     Base/include/baseclassid.hpp \
     Base/include/population.hpp \
     Base/include/operators.hpp \
-    Base/include/chromosome.hpp
+    Base/include/chromosome.hpp \
+    Base/managergeneticalgorithm.h \
+    Base/include/managergeneticalgorithm.hpp \
+    Base/generation.h \
+    Base/include/generation.hpp
