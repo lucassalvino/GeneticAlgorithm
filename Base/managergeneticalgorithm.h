@@ -4,6 +4,8 @@
 #include "include/population.hpp"
 #include "include/generation.hpp"
 #include "include/baseclassid.hpp"
+#include "include/generaterandomgene.hpp"
+#include "include/generaterandomchromosome.hpp"
 #include <iostream>
 #include <list>
 
@@ -21,12 +23,17 @@ public:
     void SetFolder(std::string &value);
     std::list<Generation<T> > getBestsChromosome();
     void setBestsChromosome(std::list<Generation<T> > &value);
-    //void RunGeneticAlgorithm(GenerateGene<T> *generateGene,CalculateEvaluation<TIPO>*calculateEval,Environment enviromnent,GenerateRandomChromosome<TIPO>* generateRandomChormossome,int numGeneration,int sizePopulation, int numGenes, Operators<TIPO>* operators = new Operators<TIPO>());
+    void GetPopulation();
+    void SetGenerateRandomGene(GenerateRandomGene<T>* random);
+    void SetGenerateRandomChormosome(GenerateRandomChromosome<T>* random);
+    void SetCalculateEvaluation(CalculateEvaluation<T>* calc);
+    void RunGeneticAlgorithm(Environment enviromnent, int numGeneration,int sizePopulation, int numGenes, Operators<T>* operators = new Operators<T>());
 private:
     bool saveLog;
     std::string log;
     std::string folder;
     std::list<Generation<T> > bestsChromosome;
+    Population<T> population;
     void DefaultInitialize();
 };
 

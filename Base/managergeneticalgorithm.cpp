@@ -49,6 +49,29 @@ void ManagerGeneticAlgorithm<T>::SetFolder(std::string &value)
 }
 
 TEMPLATE
+void ManagerGeneticAlgorithm<T>::GetPopulation(){
+    return this->population;
+}
+
+template<class T>
+void ManagerGeneticAlgorithm<T>::SetGenerateRandomGene(GenerateRandomGene<T> *random)
+{
+    population.SetGenerateRandomGene(random);
+}
+
+template<class T>
+void ManagerGeneticAlgorithm<T>::SetGenerateRandomChormosome(GenerateRandomChromosome<T>* random)
+{
+    population.SetGenerateRandomChormosome(random);
+}
+
+template<class T>
+void ManagerGeneticAlgorithm<T>::SetCalculateEvaluation(CalculateEvaluation<T> *calc)
+{
+    population.SetCalculateEvaluation(calc);
+}
+
+TEMPLATE
 std::list<Generation<T> > ManagerGeneticAlgorithm<T>::getBestsChromosome()
 {
     return bestsChromosome;

@@ -1,0 +1,4 @@
+#ifndef GENERATERANDOMCHROMOSOME_HPP
+#define GENERATERANDOMCHROMOSOME_HPP
+#include "../generaterandomchromosome.h"
+#endif // GENERATERANDOMCHROMOSOME_HPP

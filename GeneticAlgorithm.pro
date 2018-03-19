@@ -28,4 +28,6 @@ HEADERS += \
     Base/managergeneticalgorithm.h \
     Base/include/managergeneticalgorithm.hpp \
     Base/generation.h \
-    Base/include/generation.hpp
+    Base/include/generation.hpp \
+    Base/include/generaterandomgene.hpp \
+    Base/include/generaterandomchromosome.hpp

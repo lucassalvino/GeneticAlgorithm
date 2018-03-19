@@ -75,6 +75,7 @@ Chromosome<T> Population<T>::Roulette()
     for(; (aux < limit) && it != defaultChromosomes.end(); it++){
         aux += it->GetEvaluation();
     }
+    it--;
     return *it;
 }
 
@@ -179,5 +180,29 @@ int Population<T>::GetSizePopulation()
 TEMPLATE
 double Population<T>::GetDefaultDeviation()
 {
-     return deviationDefault;
+    return deviationDefault;
+}
+
+template<class T>
+void Population<T>::SetGenerateRandomGene(GenerateRandomGene<T> *rand)
+{
+    if(rand == 0)
+        throw "Instance of GenerateRandomGene is null";
+    instanceOfGenerateRandomGene = rand;
+}
+
+template<class T>
+void Population<T>::SetGenerateRandomChormosome(GenerateRandomChromosome<T> *rand)
+{
+    if(rand == 0)
+        throw "Instance of GenerateRandomChormosome is null";
+    instanceOfGenerateRandomChromosome = rand;
+}
+
+template<class T>
+void Population<T>::SetCalculateEvaluation(CalculateEvaluation<T> *calc)
+{
+    if(calc == 0)
+        throw "Instance of CalculateEvaluation is null";
+    instaceOfCalculateEvaluation = calc;
 }

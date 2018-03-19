@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Base/include/population.hpp"
+#include "Base/include/managergeneticalgorithm.hpp"
 using namespace std;
 
 int main()
