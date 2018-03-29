@@ -20,18 +20,18 @@ public:
         return rateChange;
     }
 
-    void SetChangeRate(double value)
-    {
-        if(value > 1.0) printf("[WARNING] The change rate is bigger of 100%c.",'%');
-        rateChange = value;
-        rateCrossOver = 1 - rateChange;
-    }
-
     double GetCrossOverRate()
     {
         if(rateCrossOver<0)
             throw "The crossOver rate is not set";
         return rateCrossOver;
+    }
+
+    void SetChangeRate(double value)
+    {
+        if(value > 1.0) printf("[WARNING] The change rate is bigger of 100%c.",'%');
+        rateChange = value;
+        rateCrossOver = 1 - rateChange;
     }
 
     void SetCrossOverRate(double value)

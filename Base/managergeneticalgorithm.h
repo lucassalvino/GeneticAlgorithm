@@ -22,7 +22,7 @@ public:
     std::string GetFolder();
     void SetFolder(std::string &value);
     std::list<Generation<T> > getBestsChromosome();
-    void setBestsChromosome(std::list<Generation<T> > &value);
+    void SetBestsChromosome(std::list<Generation<T> > &value);
     void GetPopulation();
     void SetGenerateRandomGene(GenerateRandomGene<T>* random);
     void SetGenerateRandomChormosome(GenerateRandomChromosome<T>* random);

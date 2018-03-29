@@ -53,22 +53,37 @@ void ManagerGeneticAlgorithm<T>::GetPopulation(){
     return this->population;
 }
 
-template<class T>
+TEMPLATE
 void ManagerGeneticAlgorithm<T>::SetGenerateRandomGene(GenerateRandomGene<T> *random)
 {
     population.SetGenerateRandomGene(random);
 }
 
-template<class T>
+TEMPLATE
 void ManagerGeneticAlgorithm<T>::SetGenerateRandomChormosome(GenerateRandomChromosome<T>* random)
 {
     population.SetGenerateRandomChormosome(random);
 }
 
-template<class T>
+TEMPLATE
 void ManagerGeneticAlgorithm<T>::SetCalculateEvaluation(CalculateEvaluation<T> *calc)
 {
     population.SetCalculateEvaluation(calc);
+}
+
+TEMPLATE
+void ManagerGeneticAlgorithm<T>::RunGeneticAlgorithm(Environment enviromnent, int numGeneration,int sizePopulation, int numGenes, Operators<T>* operators)
+{
+    population.SetEnvironment(enviromnent);
+
+    population.InitilizePopulation(sizePopulation, numGenes);
+
+    population.SetOperators(operators);
+
+    for(int i = 0; i < numGeneration; i++)
+    {
+        population.CalculateNextPopulation();
+    }
 }
 
 TEMPLATE
@@ -78,7 +93,7 @@ std::list<Generation<T> > ManagerGeneticAlgorithm<T>::getBestsChromosome()
 }
 
 TEMPLATE
-void ManagerGeneticAlgorithm<T>::setBestsChromosome(std::list<Generation<T> > &value)
+void ManagerGeneticAlgorithm<T>::SetBestsChromosome(std::list<Generation<T> > &value)
 {
     bestsChromosome = value;
 }

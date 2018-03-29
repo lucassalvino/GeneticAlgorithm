@@ -104,8 +104,9 @@ void Population<T>::CalculateNextPopulation()
 {
     swapChromosomes.clear();
     UpdateEvaluationSum();
-    if(evaluationSum == 0){
-        printf("\n[PERIGO] A populacao [%d] esta com nenhum individuo valido, todos com aptidao = 0\n\tA roleta nao irá selecionar nenhum individuo\n\n",this->idGeneration);
+    if(evaluationSum == 0)
+    {
+        printf("[WARNING] The EvaluationSum is zero\n");
     }
     for(typename std::list<Chromosome<T> >::iterator it = defaultChromosomes.begin(); it != defaultChromosomes.end(); it++){
         Chromosome<T> role = Roulette();
@@ -183,7 +184,7 @@ double Population<T>::GetDefaultDeviation()
     return deviationDefault;
 }
 
-template<class T>
+TEMPLATE
 void Population<T>::SetGenerateRandomGene(GenerateRandomGene<T> *rand)
 {
     if(rand == 0)
@@ -191,7 +192,7 @@ void Population<T>::SetGenerateRandomGene(GenerateRandomGene<T> *rand)
     instanceOfGenerateRandomGene = rand;
 }
 
-template<class T>
+TEMPLATE
 void Population<T>::SetGenerateRandomChormosome(GenerateRandomChromosome<T> *rand)
 {
     if(rand == 0)
@@ -199,10 +200,18 @@ void Population<T>::SetGenerateRandomChormosome(GenerateRandomChromosome<T> *ran
     instanceOfGenerateRandomChromosome = rand;
 }
 
-template<class T>
+TEMPLATE
 void Population<T>::SetCalculateEvaluation(CalculateEvaluation<T> *calc)
 {
     if(calc == 0)
         throw "Instance of CalculateEvaluation is null";
     instaceOfCalculateEvaluation = calc;
+}
+
+TEMPLATE
+void Population<T>::SetOperators(Operators<T>* ope)
+{
+    if(ope == 0)
+        throw "Instance of Operators is invalid";
+    instanceOfOperators = ope;
 }

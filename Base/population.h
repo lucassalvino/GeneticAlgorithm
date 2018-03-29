@@ -51,5 +51,6 @@ public:
     void SetGenerateRandomGene(GenerateRandomGene<T>* rand);
     void SetGenerateRandomChormosome(GenerateRandomChromosome<T>* rand);
     void SetCalculateEvaluation(CalculateEvaluation<T>* calc);
+    void SetOperators(Operators<T>* ope);
 };
 #endif // POPULATION_H
