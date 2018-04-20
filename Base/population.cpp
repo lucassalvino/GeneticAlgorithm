@@ -11,6 +11,7 @@ void Population<T>::InitializeDefault()
     instaceOfCalculateEvaluation = 0;
     instanceOfGenerateRandomChromosome = 0;
     instanceEnvironment = 0;
+    idGeneration = 0;
     defaultChromosomes.clear();
     swapChromosomes.clear();
 }
@@ -18,6 +19,8 @@ void Population<T>::InitializeDefault()
 TEMPLATE
 void Population<T>::UpdateEvaluationSum()
 {
+    if(instaceOfCalculateEvaluation == 0)
+        throw "instaceOfCalculateEvaluation value not yet defined";
     evaluationSum = deviationDefault = 0;
     for(typename std::list<Chromosome<T> >::iterator it = defaultChromosomes.begin(); it != defaultChromosomes.end(); it++)
     {
@@ -113,7 +116,7 @@ void Population<T>::CalculateNextPopulation()
         bool add = false;
         if(Utility::GetChance(instanceEnvironment->GetCrossOverRate())){
             Chromosome<T> son = instanceOfOperators->CrossOverTwoPoint(*it,role);
-            son.SetId(this->idGeneration++);
+            son.SetId(idGeneration++);
             swapChromosomes.push_back(son);
             add = true;
         }

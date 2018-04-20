@@ -22,6 +22,7 @@ private:
     double deviationDefault;
     int populationSize;
     int numOfGenes;
+    int idGeneration;
     std::list<Chromosome<T> > defaultChromosomes;
     std::list<Chromosome<T> > swapChromosomes;
     GenerateRandomGene<T> * instanceOfGenerateRandomGene;

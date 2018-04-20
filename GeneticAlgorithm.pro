@@ -30,4 +30,6 @@ HEADERS += \
     Base/generation.h \
     Base/include/generation.hpp \
     Base/include/generaterandomgene.hpp \
-    Base/include/generaterandomchromosome.hpp
+    Base/include/generaterandomchromosome.hpp \
+    Exemplo/customgeneraterandomchromosome.h \
+    Exemplo/executaagcaminhografo.h

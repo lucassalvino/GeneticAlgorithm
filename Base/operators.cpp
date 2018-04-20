@@ -28,7 +28,7 @@ Chromosome<T> Operators<T>::CrossOverTwoPoint(Chromosome<T> mother,Chromosome<T>
 {
     if(mother.GetNumberOfElements() != father.GetNumberOfElements())
         throw "[ERROR] The number of genes of the mother is different of the number of genes of the father";
-    if(firstDivisionPoint < 0 || firstDivisionPoint > mother.GetNumberOfElements() || secondDivisionPoint < 0 || secondDivisionPoint > mother.getNumberOfElements())
+    if(firstDivisionPoint < 0 || firstDivisionPoint > mother.GetNumberOfElements() || secondDivisionPoint < 0 || secondDivisionPoint > mother.GetNumberOfElements())
         throw "[ERROR] The division point is invalid for lenght of genes the parents";
     if(firstDivisionPoint > secondDivisionPoint)
         throw "[ERROR] The First division point is not less that of division point second";

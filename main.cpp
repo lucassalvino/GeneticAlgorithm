@@ -1,15 +1,13 @@
 #include <iostream>
-#include "Base/include/population.hpp"
-#include "Base/include/managergeneticalgorithm.hpp"
+#include "Exemplo/executaagcaminhografo.h"
 using namespace std;
 
 int main()
 {
     try
     {
-        Population<int> population;
-        population.InitilizePopulation(10,3);
-        cout << "Hello World!" << endl;
+        ExecutaAGCaminhoGrafo executa;
+        executa.Executa();
     }
     catch(const char * erro)
     {

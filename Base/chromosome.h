@@ -23,6 +23,7 @@ public:
     T GetGeneAt(int index);
     void SetGeneAt(int index, T value);
     void SetGene(std::vector<T> value);
+    void AddGeneInBack(T value);
     void GenerateRandom(GenerateRandomGene<T> * generateGene,int numberOfElements);
     Chromosome<T> GetSubChromosome(int begin, int end);
     int GetNumberOfElements();

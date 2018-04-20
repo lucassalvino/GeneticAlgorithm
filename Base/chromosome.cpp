@@ -56,6 +56,12 @@ void Chromosome<T>::SetGene(std::vector<T> value)
 }
 
 TEMPLATE
+void Chromosome<T>::AddGeneInBack(T value)
+{
+    gene.push_back(value);
+}
+
+TEMPLATE
 void Chromosome<T>::GenerateRandom(GenerateRandomGene<T> * generateGene,int numberOfElements)
 {
     for(int i = 0; i<numberOfElements;i++)

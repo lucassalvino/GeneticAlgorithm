@@ -49,8 +49,8 @@ void ManagerGeneticAlgorithm<T>::SetFolder(std::string &value)
 }
 
 TEMPLATE
-void ManagerGeneticAlgorithm<T>::GetPopulation(){
-    return this->population;
+Population<T> *ManagerGeneticAlgorithm<T>::GetPopulation(){
+    return &population;
 }
 
 TEMPLATE
@@ -74,7 +74,7 @@ void ManagerGeneticAlgorithm<T>::SetCalculateEvaluation(CalculateEvaluation<T> *
 TEMPLATE
 void ManagerGeneticAlgorithm<T>::RunGeneticAlgorithm(Environment enviromnent, int numGeneration,int sizePopulation, int numGenes, Operators<T>* operators)
 {
-    population.SetEnvironment(enviromnent);
+    population.SetEnvironment( & enviromnent);
 
     population.InitilizePopulation(sizePopulation, numGenes);
 

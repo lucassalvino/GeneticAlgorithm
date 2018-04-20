@@ -16,7 +16,8 @@ public:
     }
     virtual double GetEvaluation(Chromosome<T>* value)
     {
-        return value = 0;
+        value = 0;
+        return 0;
     }
 };
 #endif // CALCULATEEVALUATION_H
