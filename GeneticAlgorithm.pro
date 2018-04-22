@@ -9,7 +9,12 @@ SOURCES += main.cpp \
     Base/operators.cpp \
     Base/chromosome.cpp \
     Base/managergeneticalgorithm.cpp \
-    Base/generation.cpp
+    Base/generation.cpp \
+    Exemplo/Graph/Teste/runteste.cpp \
+    Exemplo/Graph/customalgorithm.cpp \
+    Exemplo/Graph/edge.cpp \
+    Exemplo/Graph/graph.cpp \
+    Exemplo/Graph/vertex.cpp
 
 HEADERS += \
     Base/chromosome.h \
@@ -31,5 +36,12 @@ HEADERS += \
     Base/include/generation.hpp \
     Base/include/generaterandomgene.hpp \
     Base/include/generaterandomchromosome.hpp \
+    Exemplo/customgeneraterandomchromosome.h \
+    Exemplo/executaagcaminhografo.h \
+    Exemplo/Graph/Teste/runteste.h \
+    Exemplo/Graph/customalgorithm.h \
+    Exemplo/Graph/edge.h \
+    Exemplo/Graph/graph.h \
+    Exemplo/Graph/vertex.h \
     Exemplo/customgeneraterandomchromosome.h \
     Exemplo/executaagcaminhografo.h

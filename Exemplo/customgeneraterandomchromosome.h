@@ -11,7 +11,7 @@ public:
     {
         Chromosome<int> retorno;
         retorno.SetId(ID);
-        retorno.SetAtive(true);
+        retorno.SetStatusChromosome(StatusChromosome::Ativo);
         for (int i = 0; i < numGenes; i++)
         {
             retorno.AddGeneInBack(rand()%this->GetMaxValueGene());

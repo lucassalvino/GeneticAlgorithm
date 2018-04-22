@@ -33,16 +33,18 @@ Chromosome<T> Operators<T>::CrossOverTwoPoint(Chromosome<T> mother,Chromosome<T>
     if(firstDivisionPoint > secondDivisionPoint)
         throw "[ERROR] The First division point is not less that of division point second";
     int i=0;
-    Chromosome<T> ret;
+    std::vector<T> geneValue;
     for(;i<firstDivisionPoint;i++){
-        ret.SetGeneAt(i,mother.GetGeneAt(i));
+        geneValue.push_back(mother.GetGeneAt(i));
     }
     for(;i<secondDivisionPoint;i++){
-        ret.SetGeneAt(i,father.GetGeneAt(i));
+        geneValue.push_back(father.GetGeneAt(i));
     }
     for(;i<mother.GetNumberOfElements();i++){
-        ret.SetGeneAt(i,mother.GetGeneAt(i));
+        geneValue.push_back(mother.GetGeneAt(i));
     }
+    Chromosome<T> ret;
+    ret.SetGene(geneValue);
     return ret;
 }
 

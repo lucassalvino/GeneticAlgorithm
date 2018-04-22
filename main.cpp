@@ -11,7 +11,7 @@ int main()
     }
     catch(const char * erro)
     {
-        printf ("[ERROR] Fail message: [%s]\n\n", erro);
+        printf ("[ERROR] [%s]\n\n", erro);
     }
     catch(...)
     {

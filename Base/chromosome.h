@@ -7,13 +7,20 @@
 #include "generaterandomgene.h"
 #include "definesmacros.h"
 
+enum StatusChromosome{
+    Ativo = 1,
+    Valido = 2,// cromossomo valido
+    Invalido = 3,// A funcao de avaliacao o define como invalido
+    Morto = 4// o cromossomo será retirado da população
+};
+
 TEMPLATE
 class Chromosome : public BaseClassId
 {
 private:
     std::vector<T> gene;
     double evaluation;
-    bool ative;
+    int StatusChromos;
 public:
     Chromosome();
     Chromosome(int Id);
@@ -31,8 +38,9 @@ public:
     void SetEvaluation(double value);
     double GetEvaluation();
     void Swap(int i, int j);
-    bool GetAtive();
-    void SetAtive(bool value);
+    int GetStatusChromosome();
+    void SetStatusChromosome(StatusChromosome value);
+
 };
 
 #endif // CHROMOSOME_H

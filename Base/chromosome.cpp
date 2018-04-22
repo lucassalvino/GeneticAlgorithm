@@ -2,19 +2,19 @@
 
 TEMPLATE
 Chromosome<T>::Chromosome():BaseClassId(){
-    ative = false;
+    StatusChromos = StatusChromosome::Ativo;
     evaluation = 0;
 }
 
 TEMPLATE
 Chromosome<T>::Chromosome(int Id):BaseClassId(Id){
-    ative = true;
+    StatusChromos = StatusChromosome::Ativo;
     evaluation = 0;
 }
 
 TEMPLATE
 Chromosome<T>::Chromosome(int Id, bool Ativo):BaseClassId(Id){
-    ative = Ativo;
+    StatusChromos = StatusChromosome::Ativo;
     evaluation = 0;
 }
 
@@ -51,7 +51,7 @@ void Chromosome<T>::SetGene(std::vector<T> value)
 {
     if((int)value.size() <= 0) throw "The size of gene must be greater than zero";
     this->gene = value;
-    ative = true;
+    StatusChromos = StatusChromosome::Ativo;
     evaluation = 0;
 }
 
@@ -89,7 +89,7 @@ int Chromosome<T>::GetNumberOfElements()
 TEMPLATE
 void Chromosome<T>::Clear()
 {
-    ative = false;
+    StatusChromos = StatusChromosome::Ativo;
     evaluation = 0;
     gene.clear();
 }
@@ -115,13 +115,13 @@ void Chromosome<T>::Swap(int i, int j)
 }
 
 TEMPLATE
-bool Chromosome<T>::GetAtive()
+int Chromosome<T>::GetStatusChromosome()
 {
-    return this->ative;
+    return this->StatusChromos;
 }
 
 TEMPLATE
-void Chromosome<T>::SetAtive(bool value)
+void Chromosome<T>::SetStatusChromosome(StatusChromosome value)
 {
-    this->ative = value;
+    this->StatusChromos = value;
 }
