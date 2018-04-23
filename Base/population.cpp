@@ -218,3 +218,20 @@ void Population<T>::SetOperators(Operators<T>* ope)
         throw "Instance of Operators is invalid";
     instanceOfOperators = ope;
 }
+
+TEMPLATE
+std::string Population<T>::GetStringPopulation(std::string *convertGeneToString)
+{
+    std::string retorno;
+    for(int i = 0; i < this->GetNumChromosomes(); i++){
+        Chromosome<T> at = this->getChromosomeAt(i);
+        retorno += std::string("[");
+        for(int j = 0; j < at.GetNumberOfElements(); j++){
+            retorno += (*convertGeneToString)(at.GetGeneAt(j));
+            if(j < (at.GetNumberOfElements()-1))
+                retorno += std::string(", ");
+        }
+        retorno += std::string("]\n");
+    }
+    return retorno;
+}

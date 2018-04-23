@@ -25,6 +25,27 @@ void ManagerGeneticAlgorithm<T>::SetSaveLog(bool value)
 }
 
 TEMPLATE
+bool ManagerGeneticAlgorithm<T>::GetShowLog()
+{
+    return showLog;
+}
+
+TEMPLATE
+void ManagerGeneticAlgorithm<T>::SetShowLog(bool value)
+{
+    showLog = value;
+}
+
+TEMPLATE
+void ManagerGeneticAlgorithm<T>::SetFunctionConvertGeneAtString(std::string (*function)(T))
+{
+    if(function == 0){
+        throw "Não é possível setar o valor da funcao de conversao como nulo";
+    }
+    FunctionConvertGeneAtString = function;
+}
+
+TEMPLATE
 std::string ManagerGeneticAlgorithm<T>::GetLog()
 {
     return log;
@@ -80,10 +101,22 @@ void ManagerGeneticAlgorithm<T>::RunGeneticAlgorithm(Environment enviromnent, in
 
     population.SetOperators(operators);
 
+    if(showLog || saveLog){
+
+    }
+
     for(int i = 0; i < numGeneration; i++)
     {
         population.CalculateNextPopulation();
     }
+}
+
+TEMPLATE
+std::string ManagerGeneticAlgorithm<T>::GetStringOfPopulation()
+{
+    std::string retorno;
+    retorno += std::string("'Population ID':"+FunctionConvertGeneAtString(this->GetId()));
+    return retorno;
 }
 
 TEMPLATE

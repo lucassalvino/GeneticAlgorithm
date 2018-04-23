@@ -17,6 +17,9 @@ public:
     ManagerGeneticAlgorithm(int id);
     bool GetSaveLog();
     void SetSaveLog(bool value);
+    bool GetShowLog();
+    void SetShowLog(bool value);
+    void SetFunctionConvertGeneAtString(std::string(*function)(T));
     std::string GetLog();
     void SetLog(std::string &value);
     std::string GetFolder();
@@ -28,8 +31,11 @@ public:
     void SetGenerateRandomChormosome(GenerateRandomChromosome<T>* random);
     void SetCalculateEvaluation(CalculateEvaluation<T>* calc);
     void RunGeneticAlgorithm(Environment enviromnent, int numGeneration,int sizePopulation, int numGenes, Operators<T>* operators = new Operators<T>());
+    std::string GetStringOfPopulation();
 private:
     bool saveLog;
+    bool showLog;
+    std::string (*FunctionConvertGeneAtString)(T);
     std::string log;
     std::string folder;
     std::list<Generation<T> > bestsChromosome;

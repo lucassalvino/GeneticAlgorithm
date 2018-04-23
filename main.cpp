@@ -7,7 +7,7 @@ int main()
     try
     {
         ExecutaAGCaminhoGrafo executa;
-        executa.Executa();
+        executa.Executa(true);
     }
     catch(const char * erro)
     {

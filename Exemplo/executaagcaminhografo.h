@@ -1,9 +1,17 @@
 #ifndef EXECUTAAGCAMINHOGRAFO_H
 #define EXECUTAAGCAMINHOGRAFO_H
+#include <sstream>
 #include "../Base/include/managergeneticalgorithm.hpp"
 #include "customgeneraterandomchromosome.h"
 #include "Graph/graph.h"
 using namespace BaseGraph;
+using namespace std;
+
+string ConvertIntToString(int a){
+    ostringstream convert;
+    convert << a;
+    return convert.str();
+}
 
 class AvaliaCromossomo : public CalculateEvaluation<int>{
 public:
@@ -45,10 +53,12 @@ private:
 
 class ExecutaAGCaminhoGrafo{
 public:
-    void Executa(){
+    void Executa(bool showLog = false){
         CustomGenerateRandomChromosome* add = new CustomGenerateRandomChromosome();
         carregaGrafo();
         add->SetMaxValuesGene(graph.getNumVertex());
+        gerenteAG.SetShowLog(showLog);
+        gerenteAG.SetFunctionConvertGeneAtString(ConvertIntToString);
         gerenteAG.GetPopulation()->SetGenerateRandomChormosome(add);
         gerenteAG.GetPopulation()->SetCalculateEvaluation(GetAvaliaCromossomo());
         gerenteAG.RunGeneticAlgorithm(GetAmbiente(), 10, 20, graph.getNumVertex());

@@ -53,5 +53,6 @@ public:
     void SetGenerateRandomChormosome(GenerateRandomChromosome<T>* rand);
     void SetCalculateEvaluation(CalculateEvaluation<T>* calc);
     void SetOperators(Operators<T>* ope);
+    std::string GetStringPopulation(std::string *convertGeneToString);
 };
 #endif // POPULATION_H
