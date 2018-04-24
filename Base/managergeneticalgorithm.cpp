@@ -52,12 +52,6 @@ std::string ManagerGeneticAlgorithm<T>::GetLog()
 }
 
 TEMPLATE
-void ManagerGeneticAlgorithm<T>::SetLog(std::string &value)
-{
-    log = value;
-}
-
-TEMPLATE
 std::string ManagerGeneticAlgorithm<T>::GetFolder()
 {
     return folder;
@@ -102,7 +96,7 @@ void ManagerGeneticAlgorithm<T>::RunGeneticAlgorithm(Environment enviromnent, in
     population.SetOperators(operators);
 
     if(showLog || saveLog){
-
+        JsonObject jsonLog("Pupulation");
     }
 
     for(int i = 0; i < numGeneration; i++)
@@ -137,4 +131,11 @@ void ManagerGeneticAlgorithm<T>::DefaultInitialize()
     saveLog = false;
     log = "";
     folder = "";
+    JsonLog = 0;
+}
+
+TEMPLATE
+void ManagerGeneticAlgorithm<T>::AddLogPopulation(){
+    if(JsonLog == 0)JsonLog = new JsonObject("ResultGeneticAlgorithm");
+    JsonObject geneAt("Population");
 }

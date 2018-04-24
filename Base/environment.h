@@ -2,6 +2,8 @@
 #define ENVIRONMENT_H
 #include <iostream>
 #include <stdio.h>
+#include "../MineJsonSuport/jsonobject.h"
+
 class Environment{
 private:
     double rateChange;
@@ -39,6 +41,13 @@ public:
         if(value > 1.0) printf("[WARNING] The CrossOver rate is bigger of 100%c.",'%');
         rateCrossOver = value;
         rateChange = 1 - rateCrossOver;
+    }
+
+    std::string ToStringJson(){
+        JsonObject json(std::string("Environment"));
+        json.AddDoubleValue("rateChange",rateChange);
+        json.AddDoubleValue("rateCrossOver",rateCrossOver);
+        return json.GetJsonObject();
     }
 };
 

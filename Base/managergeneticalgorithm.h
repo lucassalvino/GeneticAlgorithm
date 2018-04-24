@@ -21,7 +21,6 @@ public:
     void SetShowLog(bool value);
     void SetFunctionConvertGeneAtString(std::string(*function)(T));
     std::string GetLog();
-    void SetLog(std::string &value);
     std::string GetFolder();
     void SetFolder(std::string &value);
     std::list<Generation<T> > getBestsChromosome();
@@ -38,9 +37,11 @@ private:
     std::string (*FunctionConvertGeneAtString)(T);
     std::string log;
     std::string folder;
+    JsonObject* JsonLog;
     std::list<Generation<T> > bestsChromosome;
     Population<T> population;
     void DefaultInitialize();
+    void AddLogPopulation();
 };
 
 #endif // MANAGERGENETICALGORITHM_H

@@ -13,6 +13,7 @@
 #include <cstdlib>
 #include <random>
 #include <list>
+#include "../MineJsonSuport/jsonobject.h"
 TEMPLATE
 class Population : public BaseClassId
 {
@@ -54,5 +55,6 @@ public:
     void SetCalculateEvaluation(CalculateEvaluation<T>* calc);
     void SetOperators(Operators<T>* ope);
     std::string GetStringPopulation(std::string *convertGeneToString);
+    std::string ToStringJson();
 };
 #endif // POPULATION_H

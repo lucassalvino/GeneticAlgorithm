@@ -14,7 +14,8 @@ SOURCES += main.cpp \
     Exemplo/Graph/customalgorithm.cpp \
     Exemplo/Graph/edge.cpp \
     Exemplo/Graph/graph.cpp \
-    Exemplo/Graph/vertex.cpp
+    Exemplo/Graph/vertex.cpp \
+    MineJsonSuport/jsonobject.cpp
 
 HEADERS += \
     Base/chromosome.h \
@@ -44,4 +45,6 @@ HEADERS += \
     Exemplo/Graph/graph.h \
     Exemplo/Graph/vertex.h \
     Exemplo/customgeneraterandomchromosome.h \
-    Exemplo/executaagcaminhografo.h
+    Exemplo/executaagcaminhografo.h \
+    utilidades.h \
+    MineJsonSuport/jsonobject.h

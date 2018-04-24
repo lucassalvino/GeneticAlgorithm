@@ -8,6 +8,7 @@ public:
     virtual double GetEvaluation(Chromosome<T>* value)
     {
         value = 0;
+        value = value;
         return 0;
     }
 };
