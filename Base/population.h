@@ -55,6 +55,6 @@ public:
     void SetCalculateEvaluation(CalculateEvaluation<T>* calc);
     void SetOperators(Operators<T>* ope);
     std::string GetStringPopulation(std::string *convertGeneToString);
-    std::string ToStringJson();
+    std::string ToStringJson(string (*ConvertoToString)(T));
 };
 #endif // POPULATION_H

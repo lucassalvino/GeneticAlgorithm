@@ -1,5 +1,10 @@
 #include "jsonobject.h"
 
+JsonObject::JsonObject()
+{
+    name = json = "";
+}
+
 JsonObject::JsonObject(string nameObject)
 {
     name = nameObject;
@@ -10,9 +15,19 @@ string JsonObject::GetName(){
     return name;
 }
 
+void JsonObject::SetName(string value)
+{
+    name = value;
+}
+
 string JsonObject::GetJsonObject(){
     string ret = "\""+name+"\":{"+json+"}";
     return ret;
+}
+
+string JsonObject::GetJsonObjectNoName()
+{
+    return string("{"+json+"}");
 }
 
 string JsonObject::__GetFormatStrint(string strvalue){

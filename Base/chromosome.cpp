@@ -125,3 +125,20 @@ void Chromosome<T>::SetStatusChromosome(StatusChromosome value)
 {
     this->StatusChromos = value;
 }
+
+TEMPLATE
+void Chromosome<T>::ToStringJson(string (*ConvertoToString)(T))
+{
+    JsonObject json;
+    json.AddIntValue("ID", this->GetId());
+    json.AddDoubleValue("evaluation", evaluation);
+    json.AddIntValue("StatusChromos", StatusChromos);
+    string value = "[";
+    for (int i = 0; i < (int)gene.size(); i++){
+        value += ConvertoToString(gene[i]);
+        if(i != ((int)gene.size()-1))
+            value += ",";
+    }
+    value += "]";
+    return json.GetJsonObjectNoName();
+}

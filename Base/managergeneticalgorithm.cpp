@@ -97,6 +97,7 @@ void ManagerGeneticAlgorithm<T>::RunGeneticAlgorithm(Environment enviromnent, in
 
     if(showLog || saveLog){
         JsonObject jsonLog("Pupulation");
+        cout<< population.ToStringJson(0);
     }
 
     for(int i = 0; i < numGeneration; i++)

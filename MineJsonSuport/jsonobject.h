@@ -9,9 +9,12 @@ using namespace std;
 class JsonObject
 {
 public:
+    JsonObject();
     JsonObject(string nameObject);
     string GetJsonObject();
+    string GetJsonObjectNoName();
     string GetName();
+    void SetName(string value);
     void AddIntValue(string name, int value);
     void AddDoubleValue(string name, double value);
     void AddStringValue(string name, string value);

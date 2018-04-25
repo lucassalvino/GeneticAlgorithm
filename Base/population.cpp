@@ -235,3 +235,19 @@ std::string Population<T>::GetStringPopulation(std::string *convertGeneToString)
     }
     return retorno;
 }
+
+TEMPLATE
+string Population<T>::ToStringJson(string (*ConvertoToString)(T))
+{
+    JsonObject json("Population");
+    json.AddIntValue("ID",this->GetId());
+    json.AddDoubleValue("evaluationSum",evaluationSum);
+    json.AddDoubleValue("deviationDefault", deviationDefault);
+    json.AddIntValue("populationSize", populationSize);
+    json.AddIntValue("numOfGenes", numOfGenes);
+    json.AddIntValue("idGeneration", idGeneration);
+    json.AddObjectValue(instanceEnvironment->ToStringJson());
+    if(ConvertoToString!=0){
+    }
+    return json.GetJsonObjectNoName();
+}
