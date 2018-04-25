@@ -61,7 +61,7 @@ public:
         gerenteAG.SetFunctionConvertGeneAtString(ConvertIntToString);
         gerenteAG.GetPopulation()->SetGenerateRandomChormosome(add);
         gerenteAG.GetPopulation()->SetCalculateEvaluation(GetAvaliaCromossomo());
-        gerenteAG.RunGeneticAlgorithm(GetAmbiente(), 10, 20, graph.getNumVertex());
+        gerenteAG.RunGeneticAlgorithm(GetAmbiente(), 10, 20, graph.getNumVertex(), new Operators<int>(), UtilidadeConvert<int>::GetNumber);
     }
 
 private:

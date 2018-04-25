@@ -41,7 +41,7 @@ public:
     Chromosome<T> Roulette();
     Chromosome<T> GetBestChromosome();
     double GetEvaluationSum();
-    void CalculateNextPopulation();
+    string CalculateNextPopulation(bool generateLog, string (*ConvertoToString)(T));
     Environment* GetEnvironment();
     void SetEnvironment(Environment* value);
     int GetNumChromosomes();

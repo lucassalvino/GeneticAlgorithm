@@ -19,6 +19,8 @@ public:
     void SetSaveLog(bool value);
     bool GetShowLog();
     void SetShowLog(bool value);
+    int GetNumberClusters();
+    void SetNumberClusters(int value);
     void SetFunctionConvertGeneAtString(std::string(*function)(T));
     std::string GetLog();
     std::string GetFolder();
@@ -29,11 +31,12 @@ public:
     void SetGenerateRandomGene(GenerateRandomGene<T>* random);
     void SetGenerateRandomChormosome(GenerateRandomChromosome<T>* random);
     void SetCalculateEvaluation(CalculateEvaluation<T>* calc);
-    void RunGeneticAlgorithm(Environment enviromnent, int numGeneration,int sizePopulation, int numGenes, Operators<T>* operators = new Operators<T>());
+    void RunGeneticAlgorithm(Environment enviromnent, int numGeneration,int sizePopulation, int numGenes, Operators<T>* operators = new Operators<T>(), string (*ConvertoToString)(T) = 0);
     std::string GetStringOfPopulation();
 private:
     bool saveLog;
     bool showLog;
+    int numberClusters;
     std::string (*FunctionConvertGeneAtString)(T);
     std::string log;
     std::string folder;
@@ -42,6 +45,7 @@ private:
     Population<T> population;
     void DefaultInitialize();
     void AddLogPopulation();
+    void SaveLogFile(list<string>logs);
 };
 
 #endif // MANAGERGENETICALGORITHM_H

@@ -41,7 +41,7 @@ public:
     void Swap(int i, int j);
     int GetStatusChromosome();
     void SetStatusChromosome(StatusChromosome value);
-    void ToStringJson(string (*ConvertoToString)(T));
+    string ToStringJson(string (*ConvertoToString)(T));
 };
 
 #endif // CHROMOSOME_H

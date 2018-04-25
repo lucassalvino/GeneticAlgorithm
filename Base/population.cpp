@@ -103,10 +103,17 @@ double Population<T>::GetEvaluationSum()
 }
 
 TEMPLATE
-void Population<T>::CalculateNextPopulation()
+string Population<T>::CalculateNextPopulation(bool generateLog = false, string (*ConvertoToString)(T) = 0)
 {
     swapChromosomes.clear();
     UpdateEvaluationSum();
+
+    string log = "";
+
+    if(generateLog){
+        log = this->ToStringJson(ConvertoToString);
+    }
+
     if(evaluationSum == 0)
     {
         printf("[WARNING] The EvaluationSum is zero\n");
@@ -129,6 +136,7 @@ void Population<T>::CalculateNextPopulation()
             swapChromosomes.push_back(role);
         }
     }
+    return log;
 }
 
 TEMPLATE
@@ -248,6 +256,14 @@ string Population<T>::ToStringJson(string (*ConvertoToString)(T))
     json.AddIntValue("idGeneration", idGeneration);
     json.AddObjectValue(instanceEnvironment->ToStringJson());
     if(ConvertoToString!=0){
+        string array = "[";
+        typename list<Chromosome<T> >::iterator it = defaultChromosomes.begin();
+        for(int i = 0, n = (int)defaultChromosomes.size(); it != defaultChromosomes.end(); it++, i++){
+            array += it->ToStringJson(ConvertoToString);
+            if(i != (n-1)) array += ",";
+        }
+        array += "]";
+        json.AddStringValue("Chromosomes",array);
     }
     return json.GetJsonObjectNoName();
 }

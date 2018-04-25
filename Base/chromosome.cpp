@@ -127,7 +127,7 @@ void Chromosome<T>::SetStatusChromosome(StatusChromosome value)
 }
 
 TEMPLATE
-void Chromosome<T>::ToStringJson(string (*ConvertoToString)(T))
+string Chromosome<T>::ToStringJson(string (*ConvertoToString)(T))
 {
     JsonObject json;
     json.AddIntValue("ID", this->GetId());
@@ -140,5 +140,6 @@ void Chromosome<T>::ToStringJson(string (*ConvertoToString)(T))
             value += ",";
     }
     value += "]";
+    json.AddStringValue("Genes", value);
     return json.GetJsonObjectNoName();
 }

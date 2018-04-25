@@ -55,7 +55,10 @@ void JsonObject::AddDoubleValue(string name, double value){
 
 void JsonObject::AddStringValue(string name, string value){
     __AddName(name);
-    json += __GetFormatStrint(value);
+    if(value[0]=='[')
+        json += value;
+    else
+        json += __GetFormatStrint(value);
 }
 
 void JsonObject::AddBooleanValue(string name, bool value){

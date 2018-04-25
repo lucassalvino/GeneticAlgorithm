@@ -37,6 +37,18 @@ void ManagerGeneticAlgorithm<T>::SetShowLog(bool value)
 }
 
 TEMPLATE
+int ManagerGeneticAlgorithm<T>::GetNumberClusters()
+{
+    return numberClusters;
+}
+
+TEMPLATE
+void ManagerGeneticAlgorithm<T>::SetNumberClusters(int value)
+{
+    numberClusters = value;
+}
+
+TEMPLATE
 void ManagerGeneticAlgorithm<T>::SetFunctionConvertGeneAtString(std::string (*function)(T))
 {
     if(function == 0){
@@ -87,7 +99,7 @@ void ManagerGeneticAlgorithm<T>::SetCalculateEvaluation(CalculateEvaluation<T> *
 }
 
 TEMPLATE
-void ManagerGeneticAlgorithm<T>::RunGeneticAlgorithm(Environment enviromnent, int numGeneration,int sizePopulation, int numGenes, Operators<T>* operators)
+void ManagerGeneticAlgorithm<T>::RunGeneticAlgorithm(Environment enviromnent, int numGeneration,int sizePopulation, int numGenes, Operators<T>* operators, string (*ConvertoToString)(T))
 {
     population.SetEnvironment( & enviromnent);
 
@@ -95,15 +107,21 @@ void ManagerGeneticAlgorithm<T>::RunGeneticAlgorithm(Environment enviromnent, in
 
     population.SetOperators(operators);
 
-    if(showLog || saveLog){
-        JsonObject jsonLog("Pupulation");
-        cout<< population.ToStringJson(0);
-    }
+    list<string> logs;
 
     for(int i = 0; i < numGeneration; i++)
     {
-        population.CalculateNextPopulation();
+        string logAt = (population.CalculateNextPopulation((showLog || saveLog), ConvertoToString));
+        if(showLog)
+            cout<<logAt<<endl;
+        if(saveLog)
+            logs.push_back(logAt);
     }
+    if(saveLog){
+
+    }
+    //executa clusters
+    int numberElementsByClusters = sizePopulation / numberClusters;
 }
 
 TEMPLATE
@@ -133,10 +151,19 @@ void ManagerGeneticAlgorithm<T>::DefaultInitialize()
     log = "";
     folder = "";
     JsonLog = 0;
+    numberClusters = 4;
 }
 
 TEMPLATE
 void ManagerGeneticAlgorithm<T>::AddLogPopulation(){
     if(JsonLog == 0)JsonLog = new JsonObject("ResultGeneticAlgorithm");
     JsonObject geneAt("Population");
+}
+
+TEMPLATE
+void ManagerGeneticAlgorithm<T>::SaveLogFile(list<string> logs)
+{
+    FILE* arq = fopen(folder.c_str(), "a");
+    if(arq == 0)throw "Arquivo nao acessivel";
+    fclose(arq);
 }
