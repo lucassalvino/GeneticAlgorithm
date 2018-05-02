@@ -21,9 +21,8 @@ private:
     void InitializeDefault();
     double evaluationSum;
     double deviationDefault;
-    int populationSize;
     int numOfGenes;
-    int idGeneration;
+    int ContIdChromosome;
     std::list<Chromosome<T> > defaultChromosomes;
     std::list<Chromosome<T> > swapChromosomes;
     GenerateRandomGene<T> * instanceOfGenerateRandomGene;
@@ -31,6 +30,7 @@ private:
     Operators<T> * instanceOfOperators;
     CalculateEvaluation<T> * instaceOfCalculateEvaluation;
     GenerateRandomChromosome<T> * instanceOfGenerateRandomChromosome;
+    Chromosome<T> GetCopyChromosome(Chromosome<T> Origin);
 public:
     Population();
     Population(int id);
@@ -41,7 +41,7 @@ public:
     Chromosome<T> Roulette();
     Chromosome<T> GetBestChromosome();
     double GetEvaluationSum();
-    string CalculateNextPopulation(bool generateLog, string (*ConvertoToString)(T));
+    string CalculateNextPopulation(string (*ConvertoToString)(T), bool generateLog);
     Environment* GetEnvironment();
     void SetEnvironment(Environment* value);
     int GetNumChromosomes();

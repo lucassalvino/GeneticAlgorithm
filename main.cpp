@@ -7,7 +7,7 @@ int main()
     try
     {
         ExecutaAGCaminhoGrafo executa;
-        executa.Executa(true);
+        executa.Executa(true, true, "C:/Fontes/LogsAG");
     }
     catch(const char * erro)
     {

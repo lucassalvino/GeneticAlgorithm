@@ -24,7 +24,7 @@ public:
     void SetFunctionConvertGeneAtString(std::string(*function)(T));
     std::string GetLog();
     std::string GetFolder();
-    void SetFolder(std::string &value);
+    void SetFolderLog(std::string &value);
     std::list<Generation<T> > getBestsChromosome();
     void SetBestsChromosome(std::list<Generation<T> > &value);
     Population<T>* GetPopulation();

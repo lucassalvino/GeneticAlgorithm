@@ -70,7 +70,7 @@ std::string ManagerGeneticAlgorithm<T>::GetFolder()
 }
 
 TEMPLATE
-void ManagerGeneticAlgorithm<T>::SetFolder(std::string &value)
+void ManagerGeneticAlgorithm<T>::SetFolderLog(std::string &value)
 {
     folder = value;
 }
@@ -111,14 +111,14 @@ void ManagerGeneticAlgorithm<T>::RunGeneticAlgorithm(Environment enviromnent, in
 
     for(int i = 0; i < numGeneration; i++)
     {
-        string logAt = (population.CalculateNextPopulation((showLog || saveLog), ConvertoToString));
+        string logAt = (population.CalculateNextPopulation(ConvertoToString, (showLog || saveLog)));
         if(showLog)
             cout<<logAt<<endl;
         if(saveLog)
             logs.push_back(logAt);
     }
     if(saveLog){
-
+        this->SaveLogFile(logs);
     }
     //executa clusters
     int numberElementsByClusters = sizePopulation / numberClusters;
@@ -152,6 +152,7 @@ void ManagerGeneticAlgorithm<T>::DefaultInitialize()
     folder = "";
     JsonLog = 0;
     numberClusters = 4;
+    population.SetId(1);
 }
 
 TEMPLATE
@@ -163,7 +164,15 @@ void ManagerGeneticAlgorithm<T>::AddLogPopulation(){
 TEMPLATE
 void ManagerGeneticAlgorithm<T>::SaveLogFile(list<string> logs)
 {
-    FILE* arq = fopen(folder.c_str(), "a");
+    string fileName = folder + string("/ReportGeneticAlgorithm.json");
+    FILE* arq = fopen(fileName.c_str(), "w");
     if(arq == 0)throw "Arquivo nao acessivel";
+    fprintf(arq, "[");
+    int i = 0;
+    for (list<string>::iterator it = logs.begin(); it != logs.end(); it++, i++){
+        fprintf(arq,"%s", it->c_str());
+        if(i != ((int)logs.size()-1)) fprintf(arq, ",");
+    }
+    fprintf(arq, "]");
     fclose(arq);
 }

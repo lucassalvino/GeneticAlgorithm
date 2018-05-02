@@ -4,16 +4,23 @@ void Population<T>::InitializeDefault()
 {
     evaluationSum = 0;
     deviationDefault = 0;
-    populationSize = 0;
     numOfGenes = 0;
     instanceOfGenerateRandomGene = 0;
     instanceOfOperators = 0;
     instaceOfCalculateEvaluation = 0;
     instanceOfGenerateRandomChromosome = 0;
     instanceEnvironment = 0;
-    idGeneration = 0;
+    ContIdChromosome = 0;
     defaultChromosomes.clear();
     swapChromosomes.clear();
+}
+
+TEMPLATE
+Chromosome<T> Population<T>::GetCopyChromosome(Chromosome<T> Origin)
+{
+    Chromosome<T> retor;
+    retor.SetGene(Origin.GetGene());
+    return retor;
 }
 
 TEMPLATE
@@ -57,7 +64,8 @@ void Population<T>::InitilizePopulation(int sizePopulation, int numGenes)
     if(instanceOfGenerateRandomChromosome)
         for(int i = 0; i < sizePopulation; i++)
             defaultChromosomes.push_back(instanceOfGenerateRandomChromosome->GenerateChromosome(numGenes,i));
-    else
+    else{
+        this->numOfGenes = numGenes;
         for(int i = 0; i < sizePopulation; i++)
         {
             Chromosome<T> valueAdd;
@@ -67,6 +75,7 @@ void Population<T>::InitilizePopulation(int sizePopulation, int numGenes)
             valueAdd.SetGene(genes);
             defaultChromosomes.push_back(valueAdd);
         }
+    }
 }
 
 TEMPLATE
@@ -103,7 +112,7 @@ double Population<T>::GetEvaluationSum()
 }
 
 TEMPLATE
-string Population<T>::CalculateNextPopulation(bool generateLog = false, string (*ConvertoToString)(T) = 0)
+string Population<T>::CalculateNextPopulation(string (*ConvertoToString)(T value), bool generateLog)
 {
     swapChromosomes.clear();
     UpdateEvaluationSum();
@@ -118,24 +127,29 @@ string Population<T>::CalculateNextPopulation(bool generateLog = false, string (
     {
         printf("[WARNING] The EvaluationSum is zero\n");
     }
+
     for(typename std::list<Chromosome<T> >::iterator it = defaultChromosomes.begin(); it != defaultChromosomes.end(); it++){
         Chromosome<T> role = Roulette();
         bool add = false;
         if(Utility::GetChance(instanceEnvironment->GetCrossOverRate())){
             Chromosome<T> son = instanceOfOperators->CrossOverTwoPoint(*it,role);
-            son.SetId(idGeneration++);
+            son.SetId(this->ContIdChromosome++);
             swapChromosomes.push_back(son);
             add = true;
         }
+        role = GetCopyChromosome(role);
         if(Utility::GetChance(instanceEnvironment->GetChangeRate())){
             role = instanceOfOperators->Mutation(role);
+            role.SetId(this->ContIdChromosome++);
             swapChromosomes.push_back(role);
             add = true;
         }
         if(!add){
+            role.SetId(this->ContIdChromosome++);
             swapChromosomes.push_back(role);
         }
     }
+    defaultChromosomes = swapChromosomes;
     return log;
 }
 
@@ -186,7 +200,7 @@ void Population<T>::SetNumGene(int value)
 TEMPLATE
 int Population<T>::GetSizePopulation()
 {
-    return populationSize;
+    return (int)defaultChromosomes.size();
 }
 
 TEMPLATE
@@ -251,9 +265,8 @@ string Population<T>::ToStringJson(string (*ConvertoToString)(T))
     json.AddIntValue("ID",this->GetId());
     json.AddDoubleValue("evaluationSum",evaluationSum);
     json.AddDoubleValue("deviationDefault", deviationDefault);
-    json.AddIntValue("populationSize", populationSize);
+    json.AddIntValue("populationSize", GetSizePopulation());
     json.AddIntValue("numOfGenes", numOfGenes);
-    json.AddIntValue("idGeneration", idGeneration);
     json.AddObjectValue(instanceEnvironment->ToStringJson());
     if(ConvertoToString!=0){
         string array = "[";

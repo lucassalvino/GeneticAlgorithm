@@ -53,11 +53,13 @@ private:
 
 class ExecutaAGCaminhoGrafo{
 public:
-    void Executa(bool showLog = false){
+    void Executa(bool showLog = false, bool saveLog = false, std::string FolderLog = std::string("")){
         CustomGenerateRandomChromosome* add = new CustomGenerateRandomChromosome();
         carregaGrafo();
         add->SetMaxValuesGene(graph.getNumVertex());
         gerenteAG.SetShowLog(showLog);
+        gerenteAG.SetSaveLog(saveLog);
+        gerenteAG.SetFolderLog(FolderLog);
         gerenteAG.SetFunctionConvertGeneAtString(ConvertIntToString);
         gerenteAG.GetPopulation()->SetGenerateRandomChormosome(add);
         gerenteAG.GetPopulation()->SetCalculateEvaluation(GetAvaliaCromossomo());
