@@ -45,14 +45,17 @@ public:
     Environment* GetEnvironment();
     void SetEnvironment(Environment* value);
     int GetNumChromosomes();
-    Chromosome<T> getChromosomeAt(int index);
+    Chromosome<T> GetChromosomeAt(int index);
+    void AddChromosome(Chromosome<T> addValue);
     int GetNumGene();
     void SetNumGene(int value);
     int GetSizePopulation();
     double GetDefaultDeviation();
     void SetGenerateRandomGene(GenerateRandomGene<T>* rand);
     void SetGenerateRandomChormosome(GenerateRandomChromosome<T>* rand);
+    GenerateRandomChromosome<T>* GetGenerateRandomChormosome();
     void SetCalculateEvaluation(CalculateEvaluation<T>* calc);
+    CalculateEvaluation<T>* GetCalculateEvaluation();
     void SetOperators(Operators<T>* ope);
     std::string GetStringPopulation(std::string *convertGeneToString);
     std::string ToStringJson(string (*ConvertoToString)(T));

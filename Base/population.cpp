@@ -174,13 +174,19 @@ int Population<T>::GetNumChromosomes()
 }
 
 TEMPLATE
-Chromosome<T> Population<T>::getChromosomeAt(int index)
+Chromosome<T> Population<T>::GetChromosomeAt(int index)
 {
     typename std::list<Chromosome<T> >::iterator it = defaultChromosomes.begin();
     if((int)defaultChromosomes.size() > index && index >= 0)
         for(;index!=0;index--)
             it++;
     return *it;
+}
+
+TEMPLATE
+void Population<T>::AddChromosome(Chromosome<T> addValue)
+{
+    defaultChromosomes.push_back(addValue);
 }
 
 TEMPLATE
@@ -226,11 +232,23 @@ void Population<T>::SetGenerateRandomChormosome(GenerateRandomChromosome<T> *ran
 }
 
 TEMPLATE
+GenerateRandomChromosome<T> *Population<T>::GetGenerateRandomChormosome()
+{
+    return instanceOfGenerateRandomChromosome;
+}
+
+TEMPLATE
 void Population<T>::SetCalculateEvaluation(CalculateEvaluation<T> *calc)
 {
     if(calc == 0)
         throw "Instance of CalculateEvaluation is null";
     instaceOfCalculateEvaluation = calc;
+}
+
+TEMPLATE
+CalculateEvaluation<T> *Population<T>::GetCalculateEvaluation()
+{
+    return instaceOfCalculateEvaluation;
 }
 
 TEMPLATE

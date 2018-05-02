@@ -33,10 +33,12 @@ public:
     void SetCalculateEvaluation(CalculateEvaluation<T>* calc);
     void RunGeneticAlgorithm(Environment enviromnent, int numGeneration,int sizePopulation, int numGenes, Operators<T>* operators = new Operators<T>(), string (*ConvertoToString)(T) = 0);
     std::string GetStringOfPopulation();
+    void ExecutaCluster(Population<T> population, int numGeneration,string (*ConvertoToString)(T));
 private:
     bool saveLog;
     bool showLog;
     int numberClusters;
+    int ContIdPopulation;
     std::string (*FunctionConvertGeneAtString)(T);
     std::string log;
     std::string folder;
@@ -45,7 +47,7 @@ private:
     Population<T> population;
     void DefaultInitialize();
     void AddLogPopulation();
-    void SaveLogFile(list<string>logs);
+    void SaveLogFile(list<string>logs, int IdPopulation);
 };
 
 #endif // MANAGERGENETICALGORITHM_H

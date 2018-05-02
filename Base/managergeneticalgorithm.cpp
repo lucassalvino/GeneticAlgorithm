@@ -101,14 +101,43 @@ void ManagerGeneticAlgorithm<T>::SetCalculateEvaluation(CalculateEvaluation<T> *
 TEMPLATE
 void ManagerGeneticAlgorithm<T>::RunGeneticAlgorithm(Environment enviromnent, int numGeneration,int sizePopulation, int numGenes, Operators<T>* operators, string (*ConvertoToString)(T))
 {
+    population.SetId(ContIdPopulation);
     population.SetEnvironment( & enviromnent);
 
     population.InitilizePopulation(sizePopulation, numGenes);
 
     population.SetOperators(operators);
 
-    list<string> logs;
+    ExecutaCluster(this->population, numGeneration, ConvertoToString);
 
+    //executa clusters
+    int numberElementsByClusters = sizePopulation / numberClusters;
+    int ChAt = 0;
+    for(int i = 0; i < numberClusters; i++){
+        Population<T> newPopulation;
+        newPopulation.SetEnvironment( & enviromnent);
+        newPopulation.SetOperators(operators);
+        newPopulation.SetGenerateRandomChormosome(population.GetGenerateRandomChormosome());
+        newPopulation.SetCalculateEvaluation(population.GetCalculateEvaluation());
+        newPopulation.SetId(++ContIdPopulation);
+        for(int j = 0; j < numberElementsByClusters; j++)
+            newPopulation.AddChromosome(population.GetChromosomeAt(ChAt++));
+        ExecutaCluster(newPopulation, numGeneration, ConvertoToString);
+    }
+}
+
+TEMPLATE
+std::string ManagerGeneticAlgorithm<T>::GetStringOfPopulation()
+{
+    std::string retorno;
+    retorno += std::string("'Population ID':"+FunctionConvertGeneAtString(this->GetId()));
+    return retorno;
+}
+
+TEMPLATE
+void ManagerGeneticAlgorithm<T>::ExecutaCluster(Population<T> population, int numGeneration, string (*ConvertoToString)(T))
+{
+    list<string> logs;
     for(int i = 0; i < numGeneration; i++)
     {
         string logAt = (population.CalculateNextPopulation(ConvertoToString, (showLog || saveLog)));
@@ -118,18 +147,8 @@ void ManagerGeneticAlgorithm<T>::RunGeneticAlgorithm(Environment enviromnent, in
             logs.push_back(logAt);
     }
     if(saveLog){
-        this->SaveLogFile(logs);
+        this->SaveLogFile(logs, population.GetId());
     }
-    //executa clusters
-    int numberElementsByClusters = sizePopulation / numberClusters;
-}
-
-TEMPLATE
-std::string ManagerGeneticAlgorithm<T>::GetStringOfPopulation()
-{
-    std::string retorno;
-    retorno += std::string("'Population ID':"+FunctionConvertGeneAtString(this->GetId()));
-    return retorno;
 }
 
 TEMPLATE
@@ -152,7 +171,7 @@ void ManagerGeneticAlgorithm<T>::DefaultInitialize()
     folder = "";
     JsonLog = 0;
     numberClusters = 4;
-    population.SetId(1);
+    ContIdPopulation = 0;
 }
 
 TEMPLATE
@@ -162,9 +181,9 @@ void ManagerGeneticAlgorithm<T>::AddLogPopulation(){
 }
 
 TEMPLATE
-void ManagerGeneticAlgorithm<T>::SaveLogFile(list<string> logs)
+void ManagerGeneticAlgorithm<T>::SaveLogFile(list<string> logs, int IdPopulation)
 {
-    string fileName = folder + string("/ReportGeneticAlgorithm.json");
+    string fileName = folder + string("/ReportGeneticAlgorithm_"+UtilidadeConvert<int>::GetNumber(IdPopulation)+string(".json"));
     FILE* arq = fopen(fileName.c_str(), "w");
     if(arq == 0)throw "Arquivo nao acessivel";
     fprintf(arq, "[");
