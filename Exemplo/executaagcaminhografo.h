@@ -90,7 +90,12 @@ private:
         graph.addEdge(4,5,2);
         graph.addEdge(4,8,7);
         graph.addEdge(5,7,3);
-        graph.addEdge(7,8,2.5);
+        graph.addEdge(7,8,2);
+        graph.addEdge(6,5,1);
+        graph.addEdge(2,3,1);
+        graph.addEdge(1,6,10);
+        graph.addEdge(6,7,8);
+        graph.addEdge(3,8,20);
     }
     Graph graph;
 };
