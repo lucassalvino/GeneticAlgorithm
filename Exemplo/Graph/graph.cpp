@@ -39,9 +39,9 @@ BaseGraph::Vertex *BaseGraph::Graph::getVertex(int id, bool add)
 
 void BaseGraph::Graph::addEdge(int origin, int destiny, double distance, bool bidirectional, bool updateDistance)
 {
-    addEdge(getVertex(origin, true), getVertex(destiny, true), distance,updateDistance);
+    addEdge(getVertex(origin, true), getVertex(destiny, true), distance, updateDistance);
     if(bidirectional)
-        addEdge(getVertex(destiny, true), getVertex(origin, true), distance,updateDistance);
+        addEdge(getVertex(destiny, true), getVertex(origin, true), distance, updateDistance);
 }
 
 void BaseGraph::Graph::addEdge(Edge value, bool updateDistance){

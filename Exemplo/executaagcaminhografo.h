@@ -63,7 +63,10 @@ public:
         gerenteAG.SetFunctionConvertGeneAtString(ConvertIntToString);
         gerenteAG.GetPopulation()->SetGenerateRandomChormosome(add);
         gerenteAG.GetPopulation()->SetCalculateEvaluation(GetAvaliaCromossomo());
-        gerenteAG.RunGeneticAlgorithm(GetAmbiente(), 10, 20, graph.getNumVertex(), new Operators<int>(), UtilidadeConvert<int>::GetNumber);
+        gerenteAG.SetNumberClusters(1);
+        int numeroGeracoes = 5000;
+        int numeroIndividuos = 20;
+        gerenteAG.RunGeneticAlgorithm(GetAmbiente(), numeroGeracoes, numeroIndividuos, graph.getNumVertex(), new Operators<int>(), UtilidadeConvert<int>::GetNumber);
     }
 
 private:
@@ -81,21 +84,23 @@ private:
     }
     void carregaGrafo(){
         graph.addEdge(0,1,1);
-        graph.addEdge(0,2,3);
         graph.addEdge(0,3,2);
+        graph.addEdge(0,3,2);
+        graph.addEdge(0,1,1);
+        graph.addEdge(1,3,3);
         graph.addEdge(1,4,9);
-        graph.addEdge(2,5,5);
-        graph.addEdge(3,6,6);
-        graph.addEdge(6,8,10);
-        graph.addEdge(4,5,2);
-        graph.addEdge(4,8,7);
-        graph.addEdge(5,7,3);
-        graph.addEdge(7,8,2);
-        graph.addEdge(6,5,1);
         graph.addEdge(2,3,1);
-        graph.addEdge(1,6,10);
-        graph.addEdge(6,7,8);
-        graph.addEdge(3,8,20);
+        graph.addEdge(2,5,5);
+        graph.addEdge(3,5,4);
+        graph.addEdge(3,6,6);
+        graph.addEdge(4,3,5);
+        graph.addEdge(4,6,3);
+        graph.addEdge(4,8,8);
+        graph.addEdge(5,7,7);
+        graph.addEdge(6,5,8);
+        graph.addEdge(6,7,2);
+        graph.addEdge(6,8,4);
+        graph.addEdge(7,8,3);
     }
     Graph graph;
 };
